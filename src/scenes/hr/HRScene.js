@@ -66,12 +66,7 @@ const HRNav = [
       name: "",
       path: "/template/:id",
       component: Template
-		},
-		{
-			name: "",
-			path: "/edit_interview/:id",
-			component: EditInterview
-		},
+    },
     {
         name: "",
         path: "/profile/:id",
