@@ -31,5 +31,8 @@
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "9.4.0"
+  }
 }
