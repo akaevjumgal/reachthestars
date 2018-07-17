@@ -1,0 +1,31 @@
+.table_head tr:nth-child(even){background-color: #f2f2f2;}
+
+table {
+	margin: 0 auto;
+	width: 950px;
+	margin-top: 30px;
+}
+.table_head tr:hover {background-color: #ddd;}
+
+.table_head th{
+	padding: 15px;
+	text-align: center;
+	background-color: #4bbb8b;
+	color: white;
+}
+.table_head td {
+	text-align: center;
+	padding: 10px;
+}
+.del_btn {
+	padding: 5px 10px;
+}
+
+.sbmt_btn {
+	color: white;
+	background: #2187a8;
+	padding: 8px 15px;
+	font-size: 18px;
+	border-radius: 6px;
+}
+.sbmt_btn:focus {outline:0;}
