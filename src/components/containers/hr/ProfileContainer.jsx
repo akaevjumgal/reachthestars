@@ -336,40 +336,7 @@ class UserProfile extends Component {
                     width="500"
                     rightBtn="Отправить"
                     leftBtn="закрыть"
-                    >Пригласить на интервью</ModalButton>
-                    <ModalButton
-                        title="Отправить тестовое задание"
-                        text={
-                            <div>
-                                <div className={classes.root}>Тема:
-                                    <span className={classes.box}><Select value={TopicTemp}/></span>
-                                </div>
-                                <div className={classes.root}>Сообщение:
-                                    <span className={classes.box}><TextField multiline value={MsgTemp}/></span>
-                                </div>
-                                <div className={classes.root}>Ссылка на задание:
-                                     <span className={classes.box}><a href="">document.docx</a></span>
-                                </div>
-                            </div>
-                        }
-                        leftBtn="закрыть"
-                        rightBtn="отправить"
-                    >Отправить ТЗ</ModalButton>
-                    <ModalButton
-                        title="Отправить сообщение"
-                        text={
-                            <div>
-                                <div className={classes.root}>Тема:
-                                    <span className={classes.box}><TextField placeholder="тема сообщения"/></span>
-                                </div>
-                                <div className={classes.root}>Сообщение:
-                                    <span className={classes.box}><TextField multiline value={MsgTemp}/></span>
-                                </div>
-                            </div>
-                        }
-                        leftBtn="закрыть"
-                        rightBtn="отправить"
-                    >Отправить письмо</ModalButton>
+                    >Пригласить на интервью</ModalButton>                    
                 </div>
             </div>
         )
