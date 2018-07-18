@@ -3,7 +3,6 @@ import PlusMinus from '../../ui/PlusMinus';
 import { REQUESTS_URL } from '../../../utils/urls';
 import { FetchDataAPI } from '../../../services/FetchDataAPI';
 import { PutDataAPI } from '../../../services/PutDataAPI';
-import MultipleSelect from '../../ui/MultipleSelect';
 
 class EditPositionContainer extends React.Component {
 	constructor(props) {
@@ -78,8 +77,11 @@ class EditPositionContainer extends React.Component {
 							<label>
 								<span className="labels">ТРЕБОВАНИЯ:</span>	
 								<span className="labels">
-									<MultipleSelect optionValue={requirements}
-									/>
+									<ul className="requirements">
+										{requirements.map((item, i) => (
+											<li key={i}>{item}</li>
+										))}
+									</ul>
 								</span>	
 							</label>						
 						</div>

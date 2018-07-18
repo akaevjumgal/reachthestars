@@ -1,13 +1,10 @@
 import axios from 'axios';
 
-export function DeleteDataAPI(url, id) {
+export function DeleteDataAPI(url) {
     
     axios({
         url: url,
-				method: "DELETE",
-				data: {
-					id
-				}
+        method: "DELETE"
     }).then(function (response) {
         console.log(response);
     }).catch(function (error) {

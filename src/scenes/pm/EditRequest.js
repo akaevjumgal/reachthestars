@@ -1,12 +1,11 @@
 import React from 'react';
 import Header from '../general/Header';
-import MultipleSelect from '../../components/ui/MultipleSelect';
-import PlusMinus from '../../components/ui/PlusMinus';
 import Button from '@material-ui/core/Button'
 import { TextField } from '@material-ui/core';
 import { REQUESTS_URL } from '../../utils/urls';
 import { FetchDataAPI } from '../../services/FetchDataAPI';
 import { PutDataAPI } from '../../services/PutDataAPI';
+import './pm_style.css';
 
 class EditRequest extends React.Component {
 
@@ -57,7 +56,7 @@ class EditRequest extends React.Component {
 
 	render() {			
 			
-			const { department, position, count, requirements } = this.state;
+			const { department, position, requirements } = this.state;
 
 			return(
 				<div>
@@ -69,12 +68,12 @@ class EditRequest extends React.Component {
 									<option>{department}</option>
 								</select>								
 							</label>						
-						</div>
-			
+						</div>						
+
 						<div className="div_items">
 							<label>
 								<span className="labels">КОЛИЧЕСТВО:</span>
-								<PlusMinus getCountFromChild={this.getCountFromChild}  countStarts={count}/>						
+								<span className="position_amount">{this.state.count}</span>					
 							</label>
 						</div>
 			
@@ -91,7 +90,11 @@ class EditRequest extends React.Component {
 							<label>
 								<span className="labels">ТРЕБОВАНИЯ:</span>	
 								<span className="labels">
-									<MultipleSelect optionValue={requirements}/>
+									<ul className="requirements">
+										{requirements.map((item, i) => (
+											<li key={i}>{item}</li>
+										))}
+									</ul>
 								</span>	
 							</label>						
 						</div>

@@ -12,7 +12,6 @@ import { CANDIDATES_URL, INTERVIEWS_URL, USERS_URL } from '../../../utils/urls';
 import DateConvert from '../../../utils/DateConvert';
 import getStatus from '../../../utils/GetStatus';
 
-
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -99,8 +98,6 @@ let today = new Date();
 let dd = today.getDate();
 let mm = today.getMonth() + 1; //January is 0!
 
-let yyyy = today.getFullYear();
-
     if(dd<10){
         dd='0'+dd;
     }
@@ -108,7 +105,6 @@ let yyyy = today.getFullYear();
         mm='0'+mm;
     }
 
-const now = yyyy + '-' + mm + '-' + dd;
 let error = "";
 
 class UserProfile extends Component {
@@ -135,24 +131,25 @@ class UserProfile extends Component {
             status: "TO_BE_CONDUCTED"
         }
     }
-
+    
     componentDidMount() {
         FetchDataAPI(CANDIDATES_URL + "/" + this.props.profileId)
             .then(candidate => this.setState({
-                first_name: candidate.first_name,
-                last_name: candidate.last_name,
-                email: candidate.email,
-                candidate_phone: candidate.phone,
-                experience: candidate.experience,
-                level: candidate.level,
-                cv: candidate.CVs,
-                status: candidate.status,
-                skype: candidate.skype,
-                position: candidate.position.name,
-                department: candidate.position.department.name,
-                interviews: candidate.interviews,
-                comments: candidate.comments
-            }))
+                    first_name: candidate.first_name,
+                    last_name: candidate.last_name,
+                    email: candidate.email,
+                    candidate_phone: candidate.phone,
+                    experience: candidate.experience,
+                    level: candidate.level,
+                    cv: candidate.CVs,
+                    status: candidate.status,
+                    skype: candidate.skype,
+                    position: candidate.position.name,
+                    department: candidate.position.department.name,
+                    interviews: candidate.interviews,
+                    comments: candidate.comments
+            })
+        )
     }
 
     handleChange = (event) => {
@@ -193,7 +190,6 @@ class UserProfile extends Component {
 
     handleChangePhoneNumber = (event) => {
       this.state.phone[event.target.name] = event.target.value;
-      console.log(this.state);
     }
 
     handleAddInputForPhoneNumber = () => {
@@ -213,7 +209,10 @@ class UserProfile extends Component {
 
     render() {
         const { classes } = this.props;
-        const { first_name,
+        const { interviewers, 
+                location, 
+                description,
+                first_name,
                 last_name,
                 email,
                 candidate_phone,
@@ -224,52 +223,49 @@ class UserProfile extends Component {
                 level,
                 status,
                 cv,
-                comments,
-                interviewers,
-                location,
-                description } = this.state;
+                comments } = this.state;
 
         return (
             <div style={{ margin: " 0 1em"}}>
                 <div className={classes.root}>
                     Фамилия:
-                    <span className={classes.box}><TextField value={first_name} placeholder="введите фамилию" /></span>
+                    <span className={classes.box}><TextField value={first_name} name="first_name" placeholder="введите фамилию" onChange={(e) => this.handleChange(e)} /></span>
                 </div>
                 <div className={classes.root}>
                     Имя:
-                    <span className={classes.box}><TextField value={last_name} placeholder="введите имя" /></span>
+                    <span className={classes.box}><TextField value={last_name} name="last_name" placeholder="введите имя" onChange={(e) => this.handleChange(e)} /></span>
                 </div>
                 <div className={classes.root}>
                     Email:
-                    <span className={classes.box}><TextField value={email} placeholder="введите email" /></span>
+                    <span className={classes.box}><TextField value={email} name="email" placeholder="введите email" onChange={(e) => this.handleChange(e)} /></span>
                 </div>
                 <div className={classes.root}>
                     Номер:
-                    <span className={classes.box}><TextField value={candidate_phone} placeholder="введите номер" /></span>
+                    <span className={classes.box}><TextField value={candidate_phone} name="candidate_phone" placeholder="введите номер" onChange={(e) => this.handleChange(e)} /></span>
                 </div>
                 <div className={classes.root}>
                     Skype:
-                    <span className={classes.box}><TextField value={skype} placeholder="введите адрес" /></span>
+                    <span className={classes.box}><TextField value={skype} name="skype" placeholder="введите skype" onChange={(e) => this.handleChange(e)} /></span>
                 </div>
                 <div className={classes.root}>
                     Отдел:
-                    <span className={classes.box}><TextField value={department}/></span>
+                    <span className={classes.box}><TextField value={department} name="department" onChange={(e) => this.handleChange(e)} /></span>
                 </div>
                 <div className={classes.root}>
                     Позиция:
-                    <span className={classes.box}><TextField value={position}/></span>
+                    <span className={classes.box}><TextField value={position} name="position" onChange={(e) => this.handleChange(e)}/></span>
                 </div>
                 <div className={classes.root}>
                     Опыт:
-                    <span className={classes.box}><TextField type="number" value={experience}/></span>
+                    <span className={classes.box}><TextField type="number" name="experience" value={experience} onChange={(e) => this.handleChange(e)}/></span>
                 </div>
                 <div className={classes.root}>
                     Уровень:
-                    <span className={classes.box}><TextField value={level}/></span>
+                    <span className={classes.box}><TextField value={level} name="level" onChange={(e) => this.handleChange(e)}/></span>
                 </div>
                 <div className={classes.root}>
                     Статус:
-                    <span className={classes.box}><TextField value={getStatus(status)}/></span>
+                    <span className={classes.box}><TextField value={getStatus(status)} name="status" onChange={(e) => this.handleChange(e)}/></span>
                 </div>
                 <div className={classes.root}>
                     Резюме:
@@ -292,7 +288,7 @@ class UserProfile extends Component {
                     </Paper>
                 </div>
                 <div className={classes.root}>
-                    <TextField multiline name="newComment" onChange={this.handleChange} placeholder="комментарий..." />
+                    <TextField multiline placeholder="комментарий..." />
                     <span className={classes.box }><Button variant="contained" onClick={() => alert("It will be soon...")} >комментировать</Button></span>
                 </div>
                 <div className={classes.root}>
@@ -341,14 +337,6 @@ class UserProfile extends Component {
                     rightBtn="Отправить"
                     leftBtn="закрыть"
                     >Пригласить на интервью</ModalButton>
-                    <ModalButton>Нанять</ModalButton>
-                    <ModalButton
-                        title="Вы действительно хотите удалить?"
-                        leftBtn="ДА"
-                        rightBtn="НЕТ"
-                    >Удалить
-                    </ModalButton>
-                    <ModalButton>Сохранить</ModalButton>
                     <ModalButton
                         title="Отправить тестовое задание"
                         text={

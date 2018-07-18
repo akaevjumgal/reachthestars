@@ -19,7 +19,7 @@ class ListOfCandidates extends Component {
     }
 
     componentWillMount = () => {
-        FetchDataAPI(CANDIDATES_URL)
+        FetchDataAPI(CANDIDATES_URL + '?size=1000')
             .then(response => response.results.map(
                 item => (
                     {

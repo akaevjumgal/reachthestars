@@ -15,7 +15,7 @@ class Templates extends Component {
   }
 
   componentDidMount(){
-    FetchDataAPI(TEMPLATES_URL)
+    FetchDataAPI(TEMPLATES_URL + '?size=1000')
       .then(res => res.map(
         template => ({
           id: template.id,

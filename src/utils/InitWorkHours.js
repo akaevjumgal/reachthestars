@@ -1,12 +1,10 @@
-
-const InitWorkHours = (value) => {
-    if(value === 'FULL_TIME'){
-        return 'Полный рабочий день'
-    } else if(value === 'PART_TIME'){
-        return 'Гибкий график'
-    } else if(value === 'REMOVE_JOB'){
-        return 'Удаленная работа'
-    } else return ''
+const WorkTypes = {
+    "FULL_TIME": "Полный рабочий день",
+    "PART_TIME": "Гибкий график",
+    "REMOTE_JOB": "Удаленная работа"
 }
 
-export default InitWorkHours;
+export function InitWorkHours(value) {
+    return WorkTypes[value]
+}
+

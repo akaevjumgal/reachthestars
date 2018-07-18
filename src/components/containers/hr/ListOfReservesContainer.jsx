@@ -8,7 +8,7 @@ import getStatus from '../../../utils/GetStatus';
 
 const header = ['№', 'Ф.И.О', 'ДЕПАРТАМЕНТ', 'СТАТУС','ПРОФИЛЬ'];
 
-const QUERY_URL = CANDIDATES_URL + '?status=IN_RESERVE';
+const QUERY_URL = CANDIDATES_URL + '?status=IN_RESERVE&size=1000';
 
 class ListOfReserves extends Component {
 

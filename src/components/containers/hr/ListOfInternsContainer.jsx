@@ -19,7 +19,7 @@ class ListOfInterns extends Component {
     }
 
     componentWillMount = () => {
-        FetchDataAPI(CANDIDATES_URL + '?status=INTERN')
+        FetchDataAPI(CANDIDATES_URL + '?status=INTERN&size=1000')
             .then(response => response.results.map(
                 item => (
                     {

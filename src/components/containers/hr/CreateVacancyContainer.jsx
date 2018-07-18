@@ -15,9 +15,20 @@ import RenderSelectItem from '../../../utils/RenderSelectItem';
     'Кант'
   ],
   Working_hours = [
-    'FULL_TIME',
-    'PART_TIME',
-    'REMOTE_JOB'
+    {
+      id: 'FULL_TIME',
+      name: 'Полный рабочий день'
+    },
+    {
+      id: 'PART_TIME',
+      name: 'Гибкий график'
+    },
+    {
+      id: 'REMOTE_JOB',
+      name: 'Удаленная работа'
+    }
+    
+    
   ];
 
   const styles = () => ({
@@ -46,7 +57,7 @@ class CreateVacancyContainer extends Component {
           title: '',
           city: CityList[0],
           address: 'Бишкек Ахунбаева 119А',
-          working_hours: Working_hours[0],
+          working_hours: Working_hours[0].id,
           work_conditions: [
           'работа в комфортном современном офисе в центре города',
           'руководство, готовое поддерживать вас и помогать в развитии',
@@ -78,6 +89,7 @@ class CreateVacancyContainer extends Component {
       const data = this.state;
 
       PostDataAPI(VACANCIES_URL, data);
+      setTimeout(window.location.href = '/opened_vacancies') 
     }
 
     onFileUpload = (event) => {
@@ -86,10 +98,10 @@ class CreateVacancyContainer extends Component {
       })
     }
 
-    RenderWorkCondition = (props) => {
+    RenderWorkType = (props) => {
       return props.map((item, index) => (
         <MenuItem key={index} value={item.id}>{item.name}</MenuItem>
-    ))
+      ))
     }
 
     render() {
@@ -110,7 +122,7 @@ class CreateVacancyContainer extends Component {
         <form onSubmit={this.handleSubmit} style={{ margin: ' 0 1em'}}>
           <div className={classes.root}>
             Название темы: 
-            <span className={classes.box}><TextField name='title' value={title} onChange={(e) => this.handleChange(e)} className={classes.box} placeholder='введите название темы' /></span>
+            <span className={classes.box}><TextField required name='title' value={title} onChange={(e) => this.handleChange(e)} className={classes.box} placeholder='введите название темы' /></span>
           </div>
           <div className={classes.root}>
             Выберите город:
@@ -123,33 +135,33 @@ class CreateVacancyContainer extends Component {
           </div> 
           <div className={classes.root}>
             Адрес Офиса: 
-            <span className={classes.box}><TextField name='address' onChange={(e) => this.handleChange(e)} className={classes.box}  placeholder='введите адрес' value={address} /></span>
+            <span className={classes.box}><TextField required name='address' onChange={(e) => this.handleChange(e)} className={classes.box}  placeholder='введите адрес' value={address} /></span>
           </div> 
           <div className={classes.root}>
             График работы:
             <span className={classes.box}>
               <Select name='working_hours' onChange={(e) => this.handleChange(e)} value={working_hours} displayEmpty>
                   <MenuItem disabled value=''><em>Выбрать</em></MenuItem>
-                  { RenderSelectItem(Working_hours) }
+                  { this.RenderWorkType(Working_hours) }
               </Select>
             </span>
           </div>
           <div>
             Условия работы:
-            <div><TextField name='work_conditions' onChange={(e) => this.handleChange(e)} multiline className={classes.textArea} value={work_conditions.map(i => i.toString())} /></div>
+            <div><TextField required name='work_conditions' onChange={(e) => this.handleChange(e)} multiline className={classes.textArea} value={work_conditions.map(i => i.toString())} /></div>
           </div> 
           <div>
             Обязанности:
-            <div><TextField name='responsibilities' onChange={(e) => this.handleChange(e)} multiline className={classes.textArea} value={responsibilities}/></div>
+            <div><TextField required name='responsibilities' onChange={(e) => this.handleChange(e)} multiline className={classes.textArea} value={responsibilities}/></div>
           </div> 
           <div className={classes.root}>
             Зарплата:
-              <span className={classes.box}><TextField type='number' value={salary_min} name='salary_min' onChange={(e) => this.handleChange(e)} className={classes.box} placeholder='min' /></span>
-              <span className={classes.box}><TextField type='number' value={salary_max} name='salary_max' onChange={(e) => this.handleChange(e)} className={classes.box} placeholder='max' /></span>
+              <span className={classes.box}><TextField required type='number' value={salary_min} name='salary_min' onChange={(e) => this.handleChange(e)} className={classes.box} placeholder='min' /></span>
+              <span className={classes.box}><TextField required type='number' value={salary_max} name='salary_max' onChange={(e) => this.handleChange(e)} className={classes.box} placeholder='max' /></span>
           </div>
           <div>
             Комментарии:
-            <div><TextField name='comments' onChange={(e) => this.handleChange(e)} value={comments} multiline className={classes.textArea} placeholder='введите текст'/></div>
+            <div><TextField required name='comments' onChange={(e) => this.handleChange(e)} value={comments} multiline className={classes.textArea} placeholder='введите текст'/></div>
           </div>
           <div className={classes.root}>
             Изображение:

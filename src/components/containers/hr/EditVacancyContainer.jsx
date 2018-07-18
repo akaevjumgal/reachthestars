@@ -13,6 +13,7 @@ import { VACANCIES_URL } from '../../../utils/urls'
 import { FetchDataAPI } from '../../../services/FetchDataAPI';
 import DateConvert from '../../../utils/DateConvert';
 import { PutDataAPI } from '../../../services/PutDataAPI';
+import { InitWorkHours } from '../../../utils/InitWorkHours';
 
   const styles = () => ({
     root: {
@@ -72,13 +73,15 @@ class EditVacancyContainer extends Component {
         last_published: '',
         facebook: false,
         diesel: false,
-        job: false
+        job: false,
+        checked: false
       };
     } 
 
     handleChange = (event) => {
       this.setState({ 
-        [event.target.name]: event.target.value 
+        [event.target.name]: event.target.value,
+        checked: true
       });
     }
 
@@ -90,7 +93,18 @@ class EditVacancyContainer extends Component {
     }
 
     publishVacancy = (event) => {
-        window.open('https://www.facebook.com/v3.0/dialog/oauth?%20client_id=1482536371851716&redirect_uri=https://reachthestars.ml&response_type=token', "Login Facebook", "width=600,height=450");
+
+        if(this.state.checked){
+            PutDataAPI(VACANCIES_URL + '/' + this.props.vacancyId, this.state);
+        }
+
+        if(this.state.facebook){
+            window.open('https://www.facebook.com/v3.0/dialog/oauth?%20client_id=1482536371851716&redirect_uri=https://reachthestars.ml&response_type=token', "Login Facebook", "width=600,height=450");
+        alert("FB: " + this.state.facebook, "JobKG: " + this.state.job, "Diesel: " + this.state.diesel)           
+        } else {
+            alert("FB: " + this.state.facebook + "\nJobKG: " + this.state.job + "\nDiesel: " + this.state.diesel)
+        }
+        
     }
 
     RenderMenuItem = (props) => {
@@ -103,7 +117,6 @@ class EditVacancyContainer extends Component {
         this.setState({
             [e.target.name]: e.target.checked
         })
-        console.log(this.state)
     }
 
     render() {
@@ -145,7 +158,7 @@ class EditVacancyContainer extends Component {
             <div className={classes.root}>
                 График работы:
                 <span className={classes.box}>
-                    <TextField name='working_hours' onChange={(e) => this.handleChange(e)} multiline className={classes.textArea} value={working_hours} />
+                    <TextField name='working_hours' onChange={(e) => this.handleChange(e)} multiline className={classes.textArea} value={InitWorkHours(working_hours)} />
                 </span>
             </div>
             <div>

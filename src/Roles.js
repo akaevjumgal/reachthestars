@@ -12,13 +12,13 @@ export default class UserRole extends Component {
 
         if (userRole === "admin") {
             return <Admin/>;
-        } else if (userRole === "head") {
+        } else if (userRole === "HoD") {
             return <Head/>;
         } else if (userRole === "HR") {
             return <HR/>;
-        } else if (userRole === "interviewer") {
+        } else if (userRole === "Interviewer") {
             return <Interviewer/>;
-        } else if (userRole === "pm") {
+        } else if (userRole === "PM") {
             return <PM/>;
         } else return null
     }

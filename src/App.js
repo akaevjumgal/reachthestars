@@ -4,8 +4,7 @@ import {GoogleAPI, GoogleLogin} from 'react-google-oauth'
 /* User Roles */
 import User from './Roles';
 import axios from 'axios';
-import { CLIENT_ID } from './utils/urls';
-
+import { CLIENT_ID, ROLE_TOKEN_URL } from './utils/urls';
 
 const FailureHandle = () => {
     return <h1>Something went wrong</h1>
@@ -30,7 +29,7 @@ export default class App extends Component {
             token: authData.access_token
         }
 
-        await axios.post('https://reachthestars.ml/api/v1/auth/convert-role-token',
+        await axios.post(ROLE_TOKEN_URL,
             authReq,
             {
                 headers: {

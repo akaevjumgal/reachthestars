@@ -23,7 +23,7 @@ class ListOfInterviews extends Component {
     }
 
     componentWillMount = () => {
-        FetchDataAPI(INTERVIEWS_URL)
+        FetchDataAPI(INTERVIEWS_URL + '?size=1000')
             .then(response => response.results.map(
                 item => (
                     {

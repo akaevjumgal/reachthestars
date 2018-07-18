@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { TEMPLATES_URL } from '../../../utils/urls';
 import { FetchDataAPI } from '../../../services/FetchDataAPI';
-import {Input, TextField, Button, Divider } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 //import Upload from '@material-ui-upload/Upload';
 import { PutDataAPI } from '../../../services/PutDataAPI';
 import { DeleteDataAPI } from '../../../services/DeleteDataAPI';
-import { Redirect } from 'react-router-dom';
 
   const style = {
       root: {
@@ -84,9 +83,7 @@ class TemplateContainer extends Component {
       const { classes } = this.props;
       const {
         subject,
-        body,
-        attachment,
-      } = this.state;
+        body } = this.state;
       return(
         <div style={{ margin: " 0 1em"}}>
             <div className={classes.root}>

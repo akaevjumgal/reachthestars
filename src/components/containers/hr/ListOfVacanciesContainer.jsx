@@ -32,7 +32,6 @@ class ListOfVacancies extends Component {
     }
 
     render() {
-        console.log(VACANCIES_URL)
         const { data } = this.state;
         const openedVacancies = data.map(
             item => [
